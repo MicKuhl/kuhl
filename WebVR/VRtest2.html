@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GSoC 2016 - Positioning</title>
+    <meta charset="utf-8">
+    <script src="https://aframe.io/releases/0.2.0/aframe.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="landtest" src="models/landtest.dae"></a-asset-item>
+        <img id="texture" src="images/texture.png">
+        <a-mixin id="board" geometry="depth: .05; height: 1; width: 6" material="shader: flat"
+                pivot="0 0.5 0" position="0 -1 0"></a-mixin>
+       <a-mixin id="unhinge" attribute="rotation" to="0 0 0" dur="1000" fill="both"></a-mixin>
+      </a-assets>
+      <!-- The camera, default position: "0 1.8 4" -->
+      <a-entity position="2 2.8 9">
+        <a-camera id="camera">
+          <a-cursor color="#4CC3D9"></a-cursor>
+        </a-camera>
+        <a-entity camera look-controls wasd-controls></a-entity>
+      </a-entity>
+
+        <a-entity collada-model="#landtest" material="color: green" scale="1 1 1" position="-49 0 -26" rotation="0 0 0"></a-entity>
+
+      <!-- The floor -->
+      <a-plane position="0 -2 0" rotation="90 0 0" height="20" width="20" color="#228d7f"></a-plane>
+
+      <!-- Series of nested boards that unfold one by one. -->
+      <a-entity position="3 -2 -4" scale="1 1 1">
+        <!-- Animate rotation and position of group for extra visual flair. -->
+        <a-animation attribute="position" to="0 5 -4" dur="2000"></a-animation>
+        <a-animation attribute="rotation" from="0 60 0" to="0 30 0" dur="2500"></a-animation>
+
+        <!-- Pivot and position are used to set the "hinge" of each board to it's top edge. -->
+        <a-box src="#texture" mixin="board" color="#F16745">
+          <a-animation mixin="unhinge" from="-20 0 0" begin="1000"></a-animation>
+
+          <a-box mixin="board" color="#FFC65D">
+            <a-animation mixin="unhinge" from="-175 0 0" begin="250"></a-animation>
+
+            <a-box mixin="board" color="#7BC8A4">
+              <a-animation mixin="unhinge" from="-180 0 0" begin="500"></a-animation>
+
+              <a-box mixin="board" color="#4CC3D9">
+                <a-animation mixin="unhinge" from="-180 0 0" begin="750"></a-animation>
+
+                <a-box mixin="board" color="#93648D">
+                  <a-animation mixin="unhinge" from="-180 0 0" begin="1000"></a-animation>
+                </a-box>
+              </a-box>
+            </a-box>
+          </a-box>
+        </a-box>
+      </a-entity>
+
+
+      <a-entity light="type: directional; color: #EEE; intensity: 1.7" position="-1 1 0"></a-entity>
+      <!-- The sky -->
+      <a-sky color="#24CAFF" radius="1000"></a-sky>
+
+
+    </a-scene>
+  </body>
+</html>

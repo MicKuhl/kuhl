@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Hello!</title>
+    <meta charset="utf-8">
+    <script src="https://aframe.io/releases/0.2.0/aframe.js"></script>
+  </head>
+
+ <body>
+
+
+    <a-scene fog="type: linear; near: 2; far: 25; color: white">
+      <a-assets>
+        <a-asset-item id="trees" src="models/trees.dae"></a-asset-item>
+              </a-assets>
+    <a-entity light="type: hemisphere; color: #000; groundColor: #000; intensity: .8"></a-entity>
+	<a-plane rotation= "-90 0 0" position= "0 -.2 0" color="#94a550" height="100" width="100"></a-plane>
+
+
+<a-entity collada-model="#trees" scale= "1.2 2.0 1.2" rotation= " 0 70 0" position="0 0 0" rotation="0 180 0" > </a-collada-model>
+
+
+
+
+
+  <a-entity position= "30 10 30" rotation= "0 0 0">
+     <a-light
+
+             color= "orange"
+             intensity= ".4">
+
+    </a-light>
+ </a-entity>
+
+<a-sky color="#000" radius="1000"></a-sky>
+
+
+   </a-scene>
+ </body>
+</html>

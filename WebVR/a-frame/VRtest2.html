@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GSoC 2016 - Positioning</title>
+    <meta charset="utf-8">
+    <script src="https://aframe.io/releases/0.2.0/aframe.js"></script>
+  </head>
+  <body>
+    <a-scene fog="type: linear; color: #AAB; far: 30; near: 0">
+      <a-assets>
+        <a-asset-item id="land" src="models/land.dae"></a-asset-item>
+      </a-assets>
+      <!-- The camera, default position: "0 1.8 4" -->
+      <a-entity position="0 1.8 4">
+        <a-cursor color="#4CC3D9"></a-cursor>
+        <a-entity camera look-controls wasd-controls></a-entity>
+      </a-entity>
+
+        <a-entity collada-model="#land" material="color: green" scale="1 1 1" position="-10 0 1"></a-entity>
+
+      <!-- The floor -->
+      <a-plane position="0 -2 0" rotation="90 0 0" height="20" width="20" color="#228d7f"></a-plane>
+
+      <!-- The sky -->
+      <a-sky color="#24CAFF" radius="1000"></a-sky>
+
+
+    </a-scene>
+  </body>
+</html>
